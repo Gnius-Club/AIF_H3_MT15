@@ -6,7 +6,7 @@
     <title>Playbook-S3-TM15</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
- <link rel="stylesheet" href="style.css">    
+    <link rel="stylesheet" href="style.css">    
 </head>
 <body>
     <header>
@@ -14,6 +14,17 @@
         <div class="header-widgets">
             <div class="timer-container">
                 <span id="global-timer">⏱️ 40:00</span>
+                <button id="global-start-stop">Start</button>
+                <button id="global-reset">Reset</button>
+            </div>
+            <!-- Estructura del Theme Toggle agregada -->
+            <div class="theme-toggle">
+                <i class="fas fa-sun"></i>
+                <label class="switch">
+                    <input type="checkbox" id="theme-toggle-input">
+                    <span class="slider round"></span>
+                </label>
+                <i class="fas fa-moon"></i>
             </div>
         </div>
     </header>
@@ -30,6 +41,9 @@
             </ul>
         </aside>
         <main class="content">
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
             <!-- ACTIVIDAD 0: DE UN VISTAZO -->
             <div class="activity-card" id="activity-0">
                 <h2><span class="book-icon">📝</span> De un Vistazo: Comando Central</h2>
@@ -44,8 +58,12 @@
                 <div class="command-section xolo-prompt">
                     <h3>🤖 Prompt de Referencia para XOLO (Solo para Maestro)</h3>
                     <div class="prompt-box">
+                        <!-- Estructura de botón de copiado agregada -->
                         <div class="prompt-header">
                             <span class="prompt-label">⚠️ NOTA: XOLO ya conoce el tema de esta misión. Este prompt es SOLO de referencia en caso de emergencia técnica:</span>
+                            <button class="copy-btn" onclick="copyPrompt('main-prompt')">
+                                <i class="fas fa-copy"></i> Copiar
+                            </button>
                         </div>
                         <pre id="main-prompt">Explícame cómo procesar la respuesta de fetch con async/await: qué significa esperar (await), cómo convertir la respuesta a JSON y cómo usar esos datos para actualizar el DOM. Analicemos por qué los estados Cargando / Éxito / Error hacen que una UI sea más clara y confiable. Guíame para implementar esos estados en un ejemplo simple antes de conectarlo a mi backend real.</pre>
                     </div>
@@ -139,8 +157,8 @@
                         <ul>
                             <li><strong>Si los alumnos no pueden ingresar a Gnius Space:</strong> Activa XOLO SOS en <a href="https://xolo.gnius.club" target="_blank">xolo.gnius.club</a> para continuar la misión sin interrumpir la clase.</li>
                             <li><strong>Si el código no funciona en CodePen:</strong> Verificar que el JavaScript esté en la sección correcta y que no falten llaves {} en las funciones.</li>
-<li><strong>Si la consola muestra errores de red:</strong> Revisar la conexión a internet y que la URL de la API sea HTTPS.</li>
-<li><strong>Si hay errores en el código:</strong> Recordar a los estudiantes que XOLO puede ayudar a depurar. Pídeles que copien el error y se lo muestren a XOLO.</li>
+                            <li><strong>Si la consola muestra errores de red:</strong> Revisar la conexión a internet y que la URL de la API sea HTTPS.</li>
+                            <li><strong>Si hay errores en el código:</strong> Recordar a los estudiantes que XOLO puede ayudar a depurar. Pídeles que copien el error y se lo muestren a XOLO.</li>
                         </ul>
                     </div>
                 </div>
@@ -151,6 +169,8 @@
                     <h2>🚀 Actividad 1: Intro a la Misión</h2>
                     <div class="activity-timer">
                         <span class="activity-duration">⏱️ 2:00</span>
+                        <!-- Botón de timer agregado -->
+                        <button class="timer-start-btn" data-duration="120">Iniciar</button>
                     </div>
                 </div>
                 <div class="roles-section">
@@ -195,6 +215,8 @@
                     <h2>🧠 Actividad 2: A.I. Gym</h2>
                     <div class="activity-timer">
                         <span class="activity-duration">⏱️ 8:00</span>
+                        <!-- Botón de timer agregado -->
+                        <button class="timer-start-btn" data-duration="480">Iniciar</button>
                     </div>
                 </div>
                 <div class="roles-section">
@@ -240,6 +262,7 @@
                 </div>
                 
                 <div class="optional-script">
+                    <!-- Javascript inline eliminado -->
                     <button class="collapsible-button">📖 Ver guion detallado (opcional)</button>
                     <div class="collapsible-content">
                         <p class="dialogue assistant">Ahora vamos a aprender algo fundamental para cualquier desarrollador profesional: cómo hacer que nuestras aplicaciones web hablen con servidores de forma fluida. Por favor, abran su chat con XOLO y simplemente salúdenlo. XOLO ya los conoce y sabe exactamente qué les va a enseñar hoy sobre async, await y el manejo de estados en la interfaz. No necesitan escribir un prompt especial, solo empiecen a platicar con él. Él les explicará cómo evitar que una página parezca congelada mientras descarga información. ¡Pregúntenle todo lo que no entiendan!</p>
@@ -252,6 +275,8 @@
                     <h2>💡 Actividad 3: Brain Spark</h2>
                     <div class="activity-timer">
                         <span class="activity-duration">⏱️ 20:00</span>
+                        <!-- Botón de timer agregado -->
+                        <button class="timer-start-btn" data-duration="1200">Iniciar</button>
                     </div>
                 </div>
                 <div class="roles-section">
@@ -301,6 +326,7 @@
                     </div>
                 </div>
                 <div class="optional-script">
+                    <!-- Javascript inline eliminado -->
                     <button class="collapsible-button">📖 Ver guion detallado (opcional)</button>
                     <div class="collapsible-content">
                         <p class="dialogue assistant">¡Es momento de construir algo asombroso! Vamos a usar CodePen para crear un prototipo que traiga información real de internet. Platiquen con XOLO para idear un proyecto, como un buscador de usuarios o un muro de noticias. Usen el "VIBE" para que se vea genial y pidan su GCS para pasarlo a código. Por ejemplo, pueden usar la API de JSONPlaceholder para simular datos reales. Asegúrense de probar qué pasa cuando hay un error; un buen programador siempre cuida la experiencia del usuario, incluso cuando el internet falla. Si se traban con el código JavaScript, XOLO está ahí para ayudarlos a depurar cada línea.</p>
@@ -320,6 +346,8 @@
                     <h2>⚡ Actividad 4: Gnius STORM - Compartir y Reflexionar</h2>
                     <div class="activity-timer">
                         <span class="activity-duration">⏱️ 5:00</span>
+                        <!-- Botón de timer agregado -->
+                        <button class="timer-start-btn" data-duration="300">Iniciar</button>
                     </div>
                 </div>
                 <div class="roles-section">
@@ -374,6 +402,8 @@
                     <h2>✅ Actividad 5: Entrega de Evidencias</h2>
                     <div class="activity-timer">
                         <span class="activity-duration">⏱️ 5:00</span>
+                        <!-- Botón de timer agregado -->
+                        <button class="timer-start-btn" data-duration="300">Iniciar</button>
                     </div>
                 </div>
                 <div class="roles-section">
@@ -417,6 +447,6 @@
             </div>
         </main>
     </div>
-        <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
-</html></html>
+</html>
